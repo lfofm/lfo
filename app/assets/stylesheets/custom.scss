@@ -1,0 +1,65 @@
+.sans-serif {
+  font-family: -apple-system, BlinkMacSystemFont,
+               'avenir next', avenir,
+               'helvetica neue', helvetica,
+               ubuntu,
+               roboto, noto,
+               'segoe ui', arial,
+               sans-serif;
+}
+
+.bg-primary {
+  background-color: #000000 !important;
+}
+
+.text-inherit { color: inherit; }
+
+.app-navbar .navbar-brand {
+	padding-top: 0;
+  img {
+    width: 35px;
+  }
+}
+
+.track-small .cover {
+  img {
+    height: 50px;
+    object-fit: cover;
+    width: 50px;
+  }
+
+}
+
+.track .cover {
+  img {
+    height: 100px;
+    object-fit: cover;
+    width: 100px;
+  }
+
+}
+
+.control-icon {
+  background: #000000;
+  color: #ffffff;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.justify-start {
+  justify-content: flex-start;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
