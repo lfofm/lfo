@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 import Navigation from './Navigation'
 
-const Layout = ({ children }) => (
+const Layout = ({ children, context: { currentUserKey } }) => (
   <div className="container">
-    <Navigation />
+    <Navigation currentUserKey={currentUserKey}/>
     <div style={{paddingTop: '60px'}}>
       {children}
     </div>

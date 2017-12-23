@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navigation = ({ children }) => (
+const Navigation = ({ currentUserKey, children }) => (
   <nav className="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
   
     <a className="navbar-brand" href="/">
@@ -44,34 +44,26 @@ const Navigation = ({ children }) => (
           </a>
         </li>
   
-        <li className="nav-item">
-          <a className="nav-link" data-toggle="modal" href="#msgModal">Messages</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="/upload">Upload</a>
-        </li>
-  
-        <li className="nav-item d-md-none">
-          <a className="nav-link" href="notifications/index.html">Notifications</a>
-        </li>
-        <li className="nav-item d-md-none">
-          <a className="nav-link" data-action="growl">Growl</a>
-        </li>
-        <li className="nav-item d-md-none">
-          <a className="nav-link" href="login/index.html">Logout</a>
-        </li>
-  
-  
-        <li className="nav-item ml-2">
-          <button className="btn btn-default navbar-btn navbar-btn-avatar" data-toggle="popover">
-            <img className="rounded-circle" src="https://placehold.it/50x50" />
-          </button>
-        </li>
-      </ul>
-  
-      <ul className="nav navbar-nav d-none" id="js-popoverContent">
-        <li className="nav-item"><a className="nav-link" href="#" data-action="growl">Growl</a></li>
-        <li className="nav-item"><a className="nav-link" href="login/index.html">Logout</a></li>
+        {currentUserKey ? ([
+          <li className="nav-item" key='messages'>
+            <a className="nav-link" data-toggle="modal" href="#msgModal">Messages</a>
+          </li>,
+          <li className="nav-item" key='logout'>
+            <a className="nav-link" href="/users/sign_out">Logout</a>
+          </li>,
+          <li className="nav-item ml-2" key='avatar'>
+            <button className="btn btn-default navbar-btn navbar-btn-avatar" data-toggle="popover">
+              <img className="rounded-circle" src="https://placehold.it/50x50" />
+            </button>
+          </li>
+        ]) : ([
+          <li className="nav-item" key='signUp'>
+            <a className="nav-link" href="/users/sign_up">Sign up</a>
+          </li>,
+          <li className="nav-item" key='login'>
+            <a className="nav-link" href="/users/sign_in">Login</a>
+          </li>
+        ])}
       </ul>
     </div>
   </nav>

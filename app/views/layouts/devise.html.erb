@@ -5,11 +5,10 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application-bundle' %>
   </head>
 
   <body>
-    <div className="container">
+    <div class="container py-4">
       <%= yield %>
     </div>
   </body>
