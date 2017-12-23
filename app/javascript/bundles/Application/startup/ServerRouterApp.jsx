@@ -3,6 +3,9 @@ import { StaticRouter } from 'react-router';
 import ReactOnRails from 'react-on-rails';
 import routes from '../routes/routes';
 
+import { ApolloProvider } from 'react-apollo';
+import client from '../clients/ApolloClient'
+
 export default (_props, railsContext) => {
   let error;
   let redirectLocation;
@@ -21,11 +24,13 @@ export default (_props, railsContext) => {
 
   // Important that you don't do this if you are redirecting or have an error.
   return (
-    <StaticRouter
-      location={location}
-      context={context}
-    >
-      {routes}
-    </StaticRouter>
+    <ApolloProvider client={client}>
+      <StaticRouter
+        location={location}
+        context={context}
+      >
+        {routes}
+      </StaticRouter>
+    </ApolloProvider>
   );
 };

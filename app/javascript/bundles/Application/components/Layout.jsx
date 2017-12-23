@@ -7,7 +7,9 @@ import Navigation from './Navigation'
 const Layout = ({ children }) => (
   <div className="container">
     <Navigation />
-    {children}
+    <div style={{paddingTop: '60px'}}>
+      {children}
+    </div>
   </div>
 );
 
