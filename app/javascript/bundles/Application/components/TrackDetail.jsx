@@ -21,7 +21,7 @@ const FindTrack = gql`
 `
 
 const TrackDetail = ({ children, data: { loading, track }}) => (loading ? null : (
-  <div>
+  <div className='py-4'>
     <Track id={track.id} detail />
     <div className='py-4'>
       <p className='h4 text-muted'>{track.description}</p>

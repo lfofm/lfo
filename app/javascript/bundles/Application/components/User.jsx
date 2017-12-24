@@ -9,6 +9,8 @@ import Track from './Track'
 import TrackDetail from './TrackDetail'
 import TrackList from './TrackList'
 
+import FollowButton from './FollowButton'
+
 import verified from '../assets/verified.svg'
 
 const FindUser = gql`
@@ -18,6 +20,8 @@ const FindUser = gql`
       description
       username
       verified
+      follower_count
+      following_count
       tracks {
         id
       }
@@ -39,33 +43,29 @@ const userHeader = (user) => (
       <ul className="card-menu">
         <li className="card-menu-item">
           Followers
-          <h6 className="my-0">12M</h6>
+          <h6 className="my-0">{user.follower_count}</h6>
         </li>
 
         <li className="card-menu-item">
           Following
-          <h6 className="my-0">1</h6>
+          <h6 className="my-0">{user.following_count}</h6>
         </li>
       </ul>
     </div>
   </div>
 )
 
-const userInfo = (user) => (
-  <div className='py-4'>
-    <div className='card bg-none my-2 border-none w-100'>
-      <button className='btn btn-outline-primary'>
-        <span className='oi oi-plus mr-2'></span>
-        Follow {user.username}
-      </button>
-    </div>
+{/* <div className='card bg-none my-2 border-none w-100'>
+    <button className='btn btn-outline-success pointer'>
+    <span className='oi oi-dollar mr-2'></span>
+    Support {user.username}
+    </button>
+    </div> */}
 
-    <div className='card bg-none my-2 border-none w-100'>
-      <button className='btn btn-outline-success'>
-        <span className='oi oi-dollar mr-2'></span>
-        Support {user.username}
-      </button>
-    </div>
+
+const userInfo = (user, currentUserKey) => (
+  <div className='py-4'>
+    {currentUserKey && currentUserKey != user.id && <FollowButton user={user} currentUserKey={currentUserKey} />}
 
     {user.description && (
     <div className="card my-2">
@@ -99,12 +99,12 @@ const userInfo = (user) => (
 
 const trackList = (user) => <TrackList ids={user ? user.tracks.map(t => t.id) : []} />
 
-const User = ({ children, data: { loading, user }}) => (loading ? null : (
+const User = ({ children, data: { loading, user }, staticContext: { currentUserKey }}) => (loading ? null : (
   <div>
     {userHeader(user)}
     <div className='row'>
       <div className='col-sm-3'>
-        {userInfo(user)}
+        {userInfo(user, currentUserKey)}
       </div>
       <div className='col-sm'>
         <Switch>
@@ -117,5 +117,9 @@ const User = ({ children, data: { loading, user }}) => (loading ? null : (
 ))
 
 export default graphql(FindUser, {
-  options: ({ match: { params } }) => ({ variables: { id: params.id } })
+  options: (props) => ({
+    variables: {
+      id: props.match.params.id
+    }
+  })
 })(User)

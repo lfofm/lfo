@@ -21,6 +21,14 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(_obj, args, _ctx) { Track.where(id: args['ids']) }
   end
 
+  field :checkRelationship do
+    type Types::RelationshipType
+    argument :currentUser, !types.String
+    argument :id, !types.String
+    description "Check relationship between users"
+    resolve ->(_obj, args, _ctx) { Relationship.find_by(follower_id: args['currentUser'], followed_id: args['id']) }
+  end
+
   field :user do
     type Types::UserType
     argument :id, !types.String

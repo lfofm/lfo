@@ -9,10 +9,10 @@ import TrackDetail from './components/TrackDetail';
 import { Route, Switch } from 'react-router-dom';
 
 import { ApolloProvider } from 'react-apollo';
-import client from './clients/ApolloClient';
+import createClientWithState from './clients/ApolloClient';
 
 const constructRoutes = ({ context }) => (
-  <ApolloProvider client={client}>
+  <ApolloProvider client={createClientWithState(context)}>
     <Layout context={context}>
       <Switch>
         <Route
