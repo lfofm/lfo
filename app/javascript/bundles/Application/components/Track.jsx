@@ -33,24 +33,26 @@ const Track = ({ data: { loading, track }}) => (loading ? null : (
           <span className="oi oi-heart track-action-sm"></span>
         </div>
         <div className="col-sm">
-          <h4 className="bg-dark card-title p-2 w-fit">
+          <h3 className="bg-dark card-title p-2 w-fit">
             <a className='text-inherit' href={`/u/${track.user.id}/${track.id}`}>{track.name}</a>
-          </h4>
-          <p className="bg-dark card-text p-2 w-fit">
+          </h3>
+          <h4 className="bg-dark card-text p-2 w-fit">
             <a className='text-inherit' href={`/u/${track.user.id}`}>{track.user.username}</a>
-          </p>
-        </div>
-        <div className="col-sm d-none d-sm-block">
-          <div class='float-right'>
-            <img className='track-image mb-2' src={testImage} alt="Generic placeholder image" />
-            <div className='bg-dark p-2'>
+          </h4>
+          <div className='bg-dark p-2 w-fit'>
+            <span className='mr-2'>
               <span className="oi oi-media-play mr-2"></span>
               {track.track_plays_count}
-            </div>
-            <div className='bg-dark p-2'>
+              </span>
+            <span>
               <span className="oi oi-heart mr-2"></span>
               {0}
-            </div>
+            </span>
+          </div>
+        </div>
+        <div className="col-sm d-none d-sm-block">
+          <div className='float-right'>
+            <img className='track-image mb-2' src={testImage} alt="Generic placeholder image" />
           </div>
         </div>
       </div>

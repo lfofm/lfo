@@ -13,6 +13,7 @@ const FindUser = gql`
   query FindUser($id: String!) {
     user(id: $id) {
       id
+      description
       username
       tracks {
         id
@@ -22,10 +23,33 @@ const FindUser = gql`
 `
 
 const userInfo = (user) => (
-  <div>
-    <img className="py-4" src="https://placehold.it/150x150" />
-    <h1>{user.username}</h1>
-    <h3>{user.tracks.length} tracks</h3>
+  <div className='py-4'>
+    <div className="card">
+      <div className="card-body">
+        <h4 className="card-title">About</h4>
+        <p className="card-text">
+          {user.description}
+        </p>
+      </div>
+    </div>
+
+    <div className="card">
+      <div className="card-body">
+        <h4 className="card-title">Details</h4>
+        <p className="card-text">
+          <span className='oi oi-pin'></span> Los Angeles, CA
+        </p>
+      </div>
+    </div>
+
+    <div className="card">
+      <div className="card-body">
+        <h4 className="card-title">Links</h4>
+        <p className="card-text">
+          Twitter
+        </p>
+      </div>
+    </div>
   </div>
 )
 
@@ -33,6 +57,13 @@ const trackList = (user) => <TrackList ids={user ? user.tracks.map(t => t.id) : 
 
 const User = ({ children, data: { loading, user }}) => (loading ? null : (
   <div>
+    <div className='row'>
+      <div className="col-sm">
+        <div className='card'>
+          <h4>{user.username}</h4>
+        </div>
+      </div>
+    </div>
     <div className='row'>
       <div className='col-sm-3'>
         {userInfo(user)}

@@ -7,8 +7,10 @@ import Navigation from './Navigation'
 const Layout = ({ children, context: { currentUserKey } }) => (
   <div className="container">
     <Navigation currentUserKey={currentUserKey}/>
-    <div style={{paddingTop: '60px'}}>
-      {children}
+    <div className='row'>
+      <div className='col-sm' style={{paddingTop: '60px'}}>
+        {children}
+      </div>
     </div>
   </div>
 );

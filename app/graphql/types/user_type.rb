@@ -3,5 +3,6 @@ Types::UserType = GraphQL::ObjectType.define do
   field :id, !types.String
   field :email, !types.String
   field :username, types.String
+  field :description, types.String
   field :tracks, types[Types::TrackType]
 end

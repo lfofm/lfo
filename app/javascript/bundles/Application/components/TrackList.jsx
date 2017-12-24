@@ -18,10 +18,9 @@ const TrackList = ({ data: { loading, tracksById } }) => (loading ? null : (
   <div className="container">
     {tracksById.map(track => (
       <div className='row py-4' key={track.id}>
-        <div className='col-sm-9'>
+        <div className='col-sm'>
           <Track id={track.id} />
         </div>
-        <div className='col-sm'></div>
       </div>
     ))}
   </div>
