@@ -63,3 +63,10 @@
 .flex-row {
   flex-direction: row;
 }
+
+.w-fit { width: fit-content; }
+
+.blur-image {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Blur=1)";
+  filter: blur(1px);
+}

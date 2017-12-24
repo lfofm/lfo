@@ -1,9 +1,9 @@
-import React from 'react';
-import { Router, browserHistory } from 'react-router';
-import routes from '../routes/routes';
+import React from 'react'
+import { Router, browserHistory } from 'react-router'
+import constructRoutes from '../routes'
 
 export default (props) => (
   <Router history={browserHistory} {...props} >
-    {routes}
+    {constructRoutes()}
   </Router>
 );

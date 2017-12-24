@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user1 = User.create_with(password: 'foobarbar').find_by(email: 'mytestuser@gmail.com')
+user2 = User.create_with(password: 'foobarbar').find_by(email: 'mytestuser2@gmail.com')
+
+user1.tracks.create(name: 'Track1')
+user1.tracks.create(name: 'Track2')
+user2.tracks.create(name: 'Track3')

@@ -1,13 +1,6 @@
 import React from 'react';
 import { StaticRouter } from 'react-router';
-import ReactOnRails from 'react-on-rails';
-import { Route, Switch } from 'react-router-dom';
-import Layout from '../components/Layout';
-import Feed from '../components/Feed';
-import routes from '../routes/routes';
-
-import { ApolloProvider } from 'react-apollo';
-import client from '../clients/ApolloClient'
+import constructRoutes from '../routes';
 
 export default (props, railsContext) => {
   let error;
@@ -30,21 +23,11 @@ export default (props, railsContext) => {
 
   // Important that you don't do this if you are redirecting or have an error.
   return (
-    <ApolloProvider client={client}>
-      <StaticRouter
-        location={location}
-        context={context}
-      >
-        <Layout context={context}>
-          <Switch>
-            <Route
-              path="/"
-              component={Feed}
-              exact
-            />
-          </Switch>
-        </Layout>
-      </StaticRouter>
-    </ApolloProvider>
+    <StaticRouter
+      location={location}
+      context={context}
+    >
+      {constructRoutes({ context })}
+    </StaticRouter>
   );
 };
