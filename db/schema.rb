@@ -10,12 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171224024435) do
+ActiveRecord::Schema.define(version: 20171224070203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
   enable_extension "uuid-ossp"
+
+  create_table "track_plays", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "track_id"
+    t.uuid "user_id"
+    t.index ["track_id"], name: "index_track_plays_on_track_id"
+    t.index ["user_id"], name: "index_track_plays_on_user_id"
+  end
 
   create_table "tracks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name"
@@ -24,6 +31,7 @@ ActiveRecord::Schema.define(version: 20171224024435) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "track_plays_count", default: 0, null: false
     t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
@@ -46,5 +54,7 @@ ActiveRecord::Schema.define(version: 20171224024435) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "track_plays", "tracks"
+  add_foreign_key "track_plays", "users"
   add_foreign_key "tracks", "users"
 end

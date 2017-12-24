@@ -40,6 +40,9 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    after_commit_action (1.1.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
     arel (8.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -63,6 +66,10 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
+    counter_culture (1.9.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      after_commit_action (~> 1.0)
     crass (1.0.3)
     devise (4.3.0)
       bcrypt (~> 3.0)
@@ -84,7 +91,6 @@ GEM
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     libv8 (5.9.211.38.1)
-    libv8 (5.9.211.38.1-x86_64-darwin-16)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -213,6 +219,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  counter_culture (~> 1.8)
   devise
   graphiql-rails
   graphql

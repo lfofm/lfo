@@ -66,7 +66,32 @@
 
 .w-fit { width: fit-content; }
 
+.track-card {
+  overflow: hidden;
+}
+
 .blur-image {
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Blur=1)";
-  filter: blur(1px);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Blur=10)";
+  filter: blur(10px);
+}
+
+.track-image {
+  height: 100px;
+  width: 100px;
+}
+
+.track-overlay {
+  height: 270px;
+  width: auto;
+  object-fit: cover;
+}
+
+.pointer { cursor: pointer; }
+
+.track-action {
+  font-size: 32px;
+}
+
+.track-action-sm {
+  font-size: 16px;
 }

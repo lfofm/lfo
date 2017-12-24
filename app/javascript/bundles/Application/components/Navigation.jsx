@@ -37,8 +37,11 @@ const Navigation = ({ currentUserKey, children }) => (
         </li>
 
         {currentUserKey ? ([
+          <li className="nav-item" key='upload'>
+            <a className="nav-link" href="/upload">Upload</a>
+          </li>,
           <li className="nav-item" key='messages'>
-            <a className="nav-link" data-toggle="modal" href="#msgModal">Messages</a>
+            <a className="nav-link" href="/messages">Messages</a>
           </li>,
           <li className="nav-item" key='logout'>
             <a className="nav-link" href="/users/sign_out">Logout</a>

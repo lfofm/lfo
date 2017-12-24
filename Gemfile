@@ -22,6 +22,7 @@ gem 'webpacker'
 gem 'react_on_rails', '10.0.2'
 gem 'graphql'
 gem 'devise'
+gem 'counter_culture', '~> 1.8'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
