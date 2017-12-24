@@ -5,4 +5,5 @@ Types::UserType = GraphQL::ObjectType.define do
   field :username, types.String
   field :description, types.String
   field :tracks, types[Types::TrackType]
+  field :verified, types.Boolean
 end

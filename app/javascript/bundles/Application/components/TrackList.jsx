@@ -14,17 +14,13 @@ const FindTracks = gql`
   }
 `
 
-const TrackList = ({ data: { loading, tracksById } }) => (loading ? null : (
-  <div className="container">
-    {tracksById.map(track => (
-      <div className='row py-4' key={track.id}>
-        <div className='col-sm'>
-          <Track id={track.id} />
-        </div>
-      </div>
-    ))}
+const TrackList = ({ data: { loading, tracksById } }) => (loading ? null : tracksById.map(track => (
+  <div className='row py-4' key={track.id}>
+    <div className='col-sm'>
+      <Track id={track.id} />
+    </div>
   </div>
-))
+)))
 
 export default graphql(FindTracks, {
   options: ({ ids }) => ({ variables: { ids: ids } })

@@ -8,7 +8,7 @@ const Layout = ({ children, context: { currentUserKey } }) => (
   <div className="container">
     <Navigation currentUserKey={currentUserKey}/>
     <div className='row'>
-      <div className='col-sm' style={{paddingTop: '60px'}}>
+      <div className='col-sm' style={{paddingTop: '40px'}}>
         {children}
       </div>
     </div>
