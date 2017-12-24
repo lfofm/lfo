@@ -89,9 +89,12 @@ code { font-family: 'IBM Plex Mono'; }
 }
 
 .track-overlay {
-  height: 270px;
+  height: 170px;
   width: auto;
   object-fit: cover;
+  &.detail {
+    height: 340px;
+  }
 }
 
 .pointer { cursor: pointer; }

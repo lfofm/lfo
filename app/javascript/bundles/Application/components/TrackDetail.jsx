@@ -10,6 +10,7 @@ const FindTrack = gql`
   query FindTrack($id: String!) {
     track(id: $id) {
       id
+      description
       name
       user {
         id
@@ -21,7 +22,10 @@ const FindTrack = gql`
 
 const TrackDetail = ({ children, data: { loading, track }}) => (loading ? null : (
   <div>
-    <Track id={track.id} />
+    <Track id={track.id} detail />
+    <div className='py-4'>
+      <p className='h4 text-muted'>{track.description}</p>
+    </div>
     <div className='py-4'>
       <button>
         Like track
