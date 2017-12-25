@@ -3,14 +3,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Navigation from './Navigation'
+import Player from './Player'
 
 const Layout = ({ children, context: { currentUserKey } }) => (
-  <div className="container">
+  <div className="container-fluid">
     <Navigation currentUserKey={currentUserKey}/>
-    <div className='row'>
+    <div className='container'>
       <div className='col-sm' style={{paddingTop: '40px'}}>
         {children}
       </div>
+    </div>
+    <Player />
+    <div style={{paddingBottom: '80px'}}>
     </div>
   </div>
 );

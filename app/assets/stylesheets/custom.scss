@@ -31,6 +31,14 @@ code { font-family: 'IBM Plex Mono'; }
   }
 }
 
+.player .cover {
+  img {
+    height: 75px;
+    object-fit: cover;
+    width: 75px;
+  }
+}
+
 .track-small .cover {
   img {
     height: 50px;
