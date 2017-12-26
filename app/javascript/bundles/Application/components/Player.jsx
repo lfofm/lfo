@@ -21,10 +21,10 @@ const Player = () => (
           </div>
         </div>
       </div>
-      <div class="col-sm-auto text-md-right">
+      <div className="col-sm-auto text-md-right">
         <div>
           <span className='h6'>
-            <span class='font-weight-normal'>Playing</span> <a href="/">Best of Progressive House</a>
+            <span className='font-weight-normal'>Playing</span> <a href="/">Best of Progressive House</a>
           </span> <br />
           <span className='h6'>04:00/07:54</span> <br />
           <span className='h6'>

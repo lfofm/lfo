@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
   post "/graphql", to: "graphql#execute"
 
+  post '/tracks/generate_signature', to: 'tracks#generate_signature'
+
+  # Catch-all to React, if the route hasn't been matched yet
+
   get "/*all", to: "pages#index"
   get '/', to: 'pages#index'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

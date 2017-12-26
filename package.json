@@ -5,8 +5,11 @@
     "@rails/webpacker": "^3.2.0",
     "apollo-client-preset": "^1.0.5",
     "apollo-link-state": "^0.3.0",
+    "aws-sdk": "^2.175.0",
     "babel-preset-react": "^6.24.1",
     "coffeescript": "1.12.7",
+    "file-type": "^7.4.0",
+    "formik": "^0.10.5",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "node-fetch": "^1.7.3",
@@ -14,11 +17,11 @@
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
+    "react-fine-uploader": "^1.0.8",
     "react-on-rails": "^10.0.2",
-    "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2"
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.9.7"

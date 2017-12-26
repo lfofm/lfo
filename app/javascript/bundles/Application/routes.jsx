@@ -1,15 +1,16 @@
 import React from 'react';
 
-import Collection from './components/Collection';
-import Layout from './components/Layout';
-import Feed from './components/Feed';
-import User from './components/User';
-import TrackDetail from './components/TrackDetail';
-
 import { Route, Switch } from 'react-router-dom';
 
 import { ApolloProvider } from 'react-apollo';
 import createClientWithState from './clients/ApolloClient';
+
+import Collection from './components/Collection';
+import Feed from './components/Feed';
+import Layout from './components/Layout';
+import TrackDetail from './components/TrackDetail';
+import Upload from './components/Upload';
+import User from './components/User';
 
 const constructRoutes = ({ context }) => (
   <ApolloProvider client={createClientWithState(context)}>
@@ -23,6 +24,10 @@ const constructRoutes = ({ context }) => (
         <Route
           path="/collection"
           component={Collection}
+        />
+        <Route
+          path="/upload"
+          component={Upload}
         />
         <Route
           path="/u/:id"
