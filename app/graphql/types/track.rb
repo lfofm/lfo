@@ -5,4 +5,5 @@ Types::Track = GraphQL::ObjectType.define do
   field :description, types.String
   field :user, !Types::User
   field :track_plays_count, !types.Int
+  field :created_at, !Types::DateTime
 end
