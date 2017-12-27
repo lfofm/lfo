@@ -2,27 +2,27 @@ Types::QueryType = GraphQL::ObjectType.define do
   name "Query"
 
   field :track do
-    type Types::TrackType
+    type Types::Track
     argument :id, !types.String
     description "Find a track by ID"
     resolve ->(_obj, args, _ctx) { Track.find_by(id: args['id']) }
   end
 
   field :tracks do
-    type types[Types::TrackType]
+    type types[Types::Track]
     description "Find all tracks"
     resolve ->(_obj, _args, _ctx) { Track.all }
   end
 
   field :tracksById do
-    type types[Types::TrackType]
+    type types[Types::Track]
     argument :ids, types[!types.String]
     description "Find all tracks"
     resolve ->(_obj, args, _ctx) { Track.where(id: args['ids']) }
   end
 
   field :checkRelationship do
-    type Types::RelationshipType
+    type Types::Relationship
     argument :currentUser, !types.String
     argument :id, !types.String
     description "Check relationship between users"
@@ -30,7 +30,7 @@ Types::QueryType = GraphQL::ObjectType.define do
   end
 
   field :user do
-    type Types::UserType
+    type Types::User
     argument :id, !types.String
     description "Find a user by ID"
     resolve ->(_obj, args, _ctx) { User.find_by(id: args['id']) }

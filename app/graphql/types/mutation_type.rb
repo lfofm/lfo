@@ -1,7 +1,7 @@
 Types::MutationType = GraphQL::ObjectType.define do
   name "Mutation"
 
-  field :toggleFollowUser, Types::RelationshipType do
+  field :toggleFollowUser, Types::Relationship do
     argument :currentUser, !types.String
     argument :id, !types.String
     description "Toggle following a user"
@@ -16,7 +16,7 @@ Types::MutationType = GraphQL::ObjectType.define do
     }
   end
 
-  field :playTrack, Types::TrackPlayType do
+  field :playTrack, Types::Track do
     argument :id, !types.String
     description "Play a track"
     resolve ->(_obj, args, ctx) {
@@ -26,6 +26,21 @@ Types::MutationType = GraphQL::ObjectType.define do
       )
       track.reload
       tp
+    }
+  end
+
+  field :createTrack, Types::Track do
+    argument :payload, Types::CreateTrackPayload
+    description "Create a track"
+    resolve ->(_obj, args, ctx) {
+      user = ctx[:current_user]
+      return nil unless user
+      user.tracks.create(
+        name: args[:payload][:name],
+        description: args[:payload][:description],
+        cover: args[:payload][:cover],
+        audio: args[:payload][:audio]
+      )
     }
   end
 end

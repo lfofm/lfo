@@ -1,15 +1,24 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-
 import _ from 'lodash'
 
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag';
+import { makeExecutableSchema } from 'graphql-tools';
 
 import { uploadAsset } from '../uploader'
 
-export default class Upload extends React.Component {
-  requiredFields = ['name', 'description', 'cover', 'audio']
+const CreateTrack = gql`
+  mutation CreateTrack($payload: CreateTrackPayload) {
+    createTrack(payload: $payload) {
+      id
+      user { id }
+    }
+  }
+`
+
+class Upload extends React.Component {
+  requiredFields = ['name', 'audio']
 
   state = {
     isSubmitting: false,
@@ -85,15 +94,37 @@ export default class Upload extends React.Component {
     })
   }
 
-  handleSubmit() {
+  handleSubmit(evt) {
+    evt.preventDefault()
     this.setState({ isSubmitting: true })
+    const { name, description, cover, audio } = this.state.values
+    this.props.mutate({ variables: { payload: { name, description, cover, audio }}})
+      .then(response => {
+        const { data } = response
+        if (data) {
+          const { createTrack } = data
+          const { id, user } = createTrack
+          const userId = user.id
+
+          if (id && userId) {
+            window.location.replace(window.origin + `/u/${userId}/${id}`)
+          } else {
+            throw new Error('Something went wrong')
+          }
+        } else {
+          throw new Error('Something went wrong')
+        }
+        console.log(response)
+      })
+      .catch(err => this.setState({ errors: { form: true }}))
   }
 
   render() {
     const { errors, isSubmitting, touched, values } = this.state
     const nameError = errors && errors.name
     const descriptionError = errors && errors.description
-    const validForm = _.compact(this.requiredFields.map(f => values[f])).length == this.requiredFields.length
+    const validForm =
+      _.compact(this.requiredFields.map(f => values[f])).length == this.requiredFields.length
 
     return (
       <div>
@@ -104,7 +135,7 @@ export default class Upload extends React.Component {
         <div className='row'>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Name *required</label>
               <input
                 type="text"
                 className={`form-control ${nameError ? 'is-invalid' : ''}`}
@@ -130,7 +161,6 @@ export default class Upload extends React.Component {
                 onChange={this.handleChange}
                 onBlur={this.handleBlur}
                 value={values.description}
-                required
               />
               {touched.description && descriptionError && <div className="invalid-feedback">
                 A track description is required.
@@ -148,12 +178,11 @@ export default class Upload extends React.Component {
                 className="form-control-file"
                 name='cover'
                 onChange={this.fileCallback}
-                required
               />}
             </div>
 
             <div className="form-group">
-              <label htmlFor="audio_file">Audio file</label>
+              <label htmlFor="audio_file">Audio file *required</label>
               {values.audio ? ([
                 <div key='uploadLabel text-success'>Uploaded audio</div>,
                 <input key='audioHiddenField' type='hidden' name='audio' value={values.audio} />
@@ -166,7 +195,7 @@ export default class Upload extends React.Component {
               />}
             </div>
 
-            <button type="submit" className="btn btn-primary" disabled={!validForm || errors || isSubmitting}>
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </form>
@@ -175,3 +204,7 @@ export default class Upload extends React.Component {
     )
   }
 }
+
+/* disabled={!validForm || errors || isSubmitting} }>*/
+
+export default graphql(CreateTrack)(Upload)

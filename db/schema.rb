@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_12_26_030753) do
+ActiveRecord::Schema.define(version: 2017_12_27_000232) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2017_12_26_030753) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "track_plays_count", default: 0, null: false
+    t.string "cover"
+    t.string "audio"
     t.index ["user_id"], name: "index_tracks_on_user_id"
   end
 
